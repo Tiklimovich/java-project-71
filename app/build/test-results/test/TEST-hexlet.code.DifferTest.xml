@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="hexlet.code.DifferTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2023-07-11T18:09:02" hostname="Air-Artem" time="0.322">
+  <properties/>
+  <testcase name="jsonTest()" classname="hexlet.code.DifferTest" time="0.322"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
