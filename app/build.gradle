@@ -2,9 +2,19 @@ plugins {
     id 'java'
     id 'application'
     id 'checkstyle'
+    id 'com.adarshr.test-logger' version '3.0.0'
+    id 'com.github.ben-manes.versions' version '0.42.0'
+    id 'jacoco'
 }
+
 application {
     mainClass = 'hexlet.code.App'
+}
+
+jacocoTestReport {
+    reports {
+        xml.required = true
+    }
 }
 
 group 'hexlet.code'
@@ -28,4 +38,12 @@ dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.9.2'
     testImplementation 'org.assertj:assertj-core:3.22.0'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.9.2'
+}
+
+test {
+    useJUnitPlatform()
+}
+
+jacocoTestReport {
+    dependsOn test // tests are required to run before generating the report
 }

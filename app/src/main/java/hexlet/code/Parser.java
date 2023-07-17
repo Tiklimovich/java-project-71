@@ -50,6 +50,6 @@ public class Parser {
     }
 
     public static ObjectMapper buildMapper(String format) throws IOException {
-            return new ObjectMapper();
-        }
+        return new ObjectMapper();
     }
+}
