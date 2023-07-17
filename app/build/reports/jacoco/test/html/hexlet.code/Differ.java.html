@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="ru"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Differ.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">app</a> &gt; <a href="index.source.html" class="el_package">hexlet.code</a> &gt; <span class="el_source">Differ.java</span></div><h1>Differ.java</h1><pre class="source lang-java linenums">package hexlet.code;
+
+import java.io.IOException;
+import java.util.Map;
+
+<span class="nc" id="L6">public class Differ {</span>
+    public static String generate(String filepath1, String filepath2, String format) throws Exception {
+<span class="fc" id="L8">        Map&lt;String, Object&gt; map1 = Parser.getData(filepath1, format);</span>
+<span class="fc" id="L9">        Map&lt;String, Object&gt; map2 = Parser.getData(filepath2, format);</span>
+<span class="fc" id="L10">        return Parser.parse(map1, map2);</span>
+    }
+
+    public static String getFormat(String filepath1, String filepath2) throws IOException {
+<span class="nc" id="L14">        String absPath1 = Parser.makeAbsolutePath(filepath1).toString();</span>
+<span class="nc" id="L15">        String absPath2 = Parser.makeAbsolutePath(filepath2).toString();</span>
+<span class="nc" id="L16">        String formatFile1 = absPath1.substring(absPath1.indexOf(&quot;.&quot;) + 1);</span>
+<span class="nc" id="L17">        String formatFile2 = absPath2.substring(absPath2.indexOf(&quot;.&quot;) + 1);</span>
+<span class="nc bnc" id="L18" title="All 2 branches missed.">        if (formatFile1.equals(formatFile2)) {</span>
+<span class="nc" id="L19">            return formatFile1;</span>
+        }
+<span class="nc" id="L21">        throw new IOException(&quot;Different file formats&quot;);</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>
