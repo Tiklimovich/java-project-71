@@ -9,26 +9,39 @@ import java.util.concurrent.Callable;
 
 @Command(name = "gendiff", mixinStandardHelpOptions = true, version = "gendiff 1.0",
         description = "Compares two configuration files and shows a difference.")
-public class App implements Callable<Integer> {
-    @Parameters(index = "0", paramLabel = "filepath1", defaultValue = "src/test/resources/file1.json",
+public final class App implements Callable<Integer> {
+    private static final int SUCCESS_EXIT_CODE = 0;
+    private static final int ERROR_EXIT_CODE = 1;
+
+    @Parameters(index = "0", paramLabel = "filepath1",
             description = "path to first file")
-    private String filepath1;
-    @Parameters(index = "1", paramLabel = "filepath2", defaultValue = "src/test/resources/file2.json",
+    private String filePath1;
+    @Parameters(index = "1", paramLabel = "filepath2",
             description = "path to second file")
-    private String filepath2;
+    private String filePath2;
 
     @Option(names = {"-f", "--format"}, paramLabel = "format",
             defaultValue = "stylish", description = "output format: stylish")
     private String format;
-    @Override
-    public Integer call() throws Exception {
-        String formates = Differ.getFormat(filepath1, filepath2);
-        System.out.println(Differ.generate(filepath1, filepath2, format));
-        return 0;
-    }
+    @Option(names = {"-h", "--help"}, usageHelp = true, description = "Show this help message and exit.")
+    private boolean usageHelpRequested;
+    @Option(names = {"-V", "--version"}, versionHelp = true, description = "Print version information and exit.")
+    private boolean versionInfoRequested;
+
     public static void main(String[] args) {
         int exitCode = new CommandLine(new App()).execute(args);
         System.exit(exitCode);
+    }
+    @Override
+    public Integer call() throws Exception {
+        try {
+            String formattedDiff = Differ.generate(filePath1, filePath2, format);
+            System.out.println(formattedDiff);
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+            return ERROR_EXIT_CODE;
+        }
+        return SUCCESS_EXIT_CODE;
     }
 }
 

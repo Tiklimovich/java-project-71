@@ -9,27 +9,40 @@ import java.util.concurrent.Callable;
 
 @Command(name = &quot;gendiff&quot;, mixinStandardHelpOptions = true, version = &quot;gendiff 1.0&quot;,
         description = &quot;Compares two configuration files and shows a difference.&quot;)
-<span class="nc" id="L12">public class App implements Callable&lt;Integer&gt; {</span>
-    @Parameters(index = &quot;0&quot;, paramLabel = &quot;filepath1&quot;, defaultValue = &quot;src/test/resources/file1.json&quot;,
+<span class="nc" id="L12">public final class App implements Callable&lt;Integer&gt; {</span>
+    private static final int SUCCESS_EXIT_CODE = 0;
+    private static final int ERROR_EXIT_CODE = 1;
+
+    @Parameters(index = &quot;0&quot;, paramLabel = &quot;filepath1&quot;,
             description = &quot;path to first file&quot;)
-    private String filepath1;
-    @Parameters(index = &quot;1&quot;, paramLabel = &quot;filepath2&quot;, defaultValue = &quot;src/test/resources/file2.json&quot;,
+    private String filePath1;
+    @Parameters(index = &quot;1&quot;, paramLabel = &quot;filepath2&quot;,
             description = &quot;path to second file&quot;)
-    private String filepath2;
+    private String filePath2;
 
     @Option(names = {&quot;-f&quot;, &quot;--format&quot;}, paramLabel = &quot;format&quot;,
             defaultValue = &quot;stylish&quot;, description = &quot;output format: stylish&quot;)
     private String format;
+    @Option(names = {&quot;-h&quot;, &quot;--help&quot;}, usageHelp = true, description = &quot;Show this help message and exit.&quot;)
+    private boolean usageHelpRequested;
+    @Option(names = {&quot;-V&quot;, &quot;--version&quot;}, versionHelp = true, description = &quot;Print version information and exit.&quot;)
+    private boolean versionInfoRequested;
+
+    public static void main(String[] args) {
+<span class="nc" id="L32">        int exitCode = new CommandLine(new App()).execute(args);</span>
+<span class="nc" id="L33">        System.exit(exitCode);</span>
+<span class="nc" id="L34">    }</span>
     @Override
     public Integer call() throws Exception {
-<span class="nc" id="L25">        String formates = Differ.getFormat(filepath1, filepath2);</span>
-<span class="nc" id="L26">        System.out.println(Differ.generate(filepath1, filepath2, format));</span>
-<span class="nc" id="L27">        return 0;</span>
+        try {
+<span class="nc" id="L38">            String formattedDiff = Differ.generate(filePath1, filePath2, format);</span>
+<span class="nc" id="L39">            System.out.println(formattedDiff);</span>
+<span class="nc" id="L40">        } catch (Exception e) {</span>
+<span class="nc" id="L41">            System.err.println(e.getMessage());</span>
+<span class="nc" id="L42">            return ERROR_EXIT_CODE;</span>
+<span class="nc" id="L43">        }</span>
+<span class="nc" id="L44">        return SUCCESS_EXIT_CODE;</span>
     }
-    public static void main(String[] args) {
-<span class="nc" id="L30">        int exitCode = new CommandLine(new App()).execute(args);</span>
-<span class="nc" id="L31">        System.exit(exitCode);</span>
-<span class="nc" id="L32">    }</span>
 }
 
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

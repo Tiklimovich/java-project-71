@@ -3,54 +3,32 @@
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import com.fasterxml.jackson.databind.json.JsonMapper;
+import com.fasterxml.jackson.dataformat.yaml.YAMLMapper;
+
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.Map;
-import java.util.List;
-import java.util.ArrayList;
-import java.util.Set;
-import java.util.HashSet;
+
 import java.util.Collections;
-import java.util.Objects;
 
-<span class="nc" id="L18">public class Parser {</span>
-    public static String parse(Map&lt;String, Object&gt; map1, Map&lt;String, Object&gt; map2) {
-<span class="fc" id="L20">        StringBuilder result = new StringBuilder(&quot;{\n&quot;);</span>
-
-<span class="fc" id="L22">        Set&lt;String&gt; checkSet = new HashSet&lt;&gt;(map1.keySet());</span>
-<span class="fc" id="L23">        checkSet.addAll(map2.keySet());</span>
-<span class="fc" id="L24">        List&lt;String&gt; sortedList = new ArrayList&lt;&gt;(checkSet);</span>
-<span class="fc" id="L25">        Collections.sort(sortedList);</span>
-<span class="fc bfc" id="L26" title="All 2 branches covered.">        for (String key : sortedList) {</span>
-<span class="fc bfc" id="L27" title="All 6 branches covered.">            if (map1.containsKey(key) &amp;&amp; map2.containsKey(key) &amp;&amp; Objects.equals(map1.get(key),</span>
-<span class="fc" id="L28">                    map2.get(key))) { //пары совпадут целиком</span>
-<span class="fc" id="L29">                result.append(String.format(&quot;    %s: %s\n&quot;, key, map1.get(key)));</span>
-<span class="pc bpc" id="L30" title="1 of 6 branches missed.">            } else if (map1.containsKey(key) &amp;&amp; map2.containsKey(key) &amp;&amp; !map1.get(key).equals(map2.get(key))) {</span>
-                //не совпадут по значению
-<span class="fc" id="L32">                result.append(String.format(&quot;  + %s: %s\n  - %s: %s\n&quot;, key, map1.get(key), key, map2.get(key)));</span>
-<span class="pc bpc" id="L33" title="1 of 4 branches missed.">            } else if (map1.containsKey(key) &amp;&amp; !map2.containsKey(key)) { //если был и исчез</span>
-<span class="fc" id="L34">                result.append(String.format(&quot;  + %s: %s\n&quot;, key, map1.get(key)));</span>
-<span class="pc bpc" id="L35" title="2 of 4 branches missed.">            } else if (!map1.containsKey(key) &amp;&amp; map2.containsKey(key)) { //не был и был добавлен</span>
-<span class="fc" id="L36">                result.append(String.format(&quot;  - %s: %s\n&quot;, key, map2.get(key)));</span>
-            }
-<span class="fc" id="L38">        }</span>
-<span class="fc" id="L39">        return result + &quot;}\n&quot;;</span>
+<span class="nc" id="L14">public class Parser {</span>
+    public static Map&lt;String, Object&gt; parser(String content, String dataFormat) throws Exception {
+<span class="pc bpc" id="L16" title="1 of 3 branches missed.">        return switch (dataFormat) {</span>
+<span class="fc" id="L17">            case &quot;json&quot; -&gt; getDataJson(content);</span>
+<span class="fc" id="L18">            case &quot;yml&quot;, &quot;yaml&quot; -&gt; getDataYaml(content);</span>
+<span class="nc" id="L19">            default -&gt; throw new IOException(&quot;Unknown file extension! -&gt; &quot; + dataFormat);</span>
+        };
     }
-    public static Map&lt;String, Object&gt; getData(String filepath, String format) throws IOException {
-<span class="fc" id="L42">        ObjectMapper objectMapper = buildMapper(format);</span>
-<span class="fc" id="L43">        String fileContent = Files.readString(makeAbsolutePath(filepath));</span>
-        //Создана строка данных из содержимого файла по абс пути
-<span class="fc" id="L45">        return objectMapper.readValue(fileContent, new TypeReference&lt;&gt;() { });</span>
+    private static Map&lt;String, Object&gt; getDataJson(String content) throws IOException {
+<span class="fc" id="L23">        ObjectMapper jsonMapper = new JsonMapper();</span>
+<span class="fc" id="L24">        return jsonMapper.readValue(content, new TypeReference&lt;&gt;() {</span>
+        });
     }
-    public static Path makeAbsolutePath(String filepath) {
-<span class="fc" id="L48">        Path filePath = Paths.get(filepath); //создан путь из строки String</span>
-<span class="fc" id="L49">        return filePath.toAbsolutePath().normalize(); //относительный переведен в абсолютный путь</span>
-    }
-
-    public static ObjectMapper buildMapper(String format) throws IOException {
-<span class="fc" id="L53">        return new ObjectMapper();</span>
+    private static Map&lt;String, Object&gt; getDataYaml(String content) throws IOException {
+<span class="fc" id="L28">        ObjectMapper ymlMapper = new YAMLMapper();</span>
+<span class="fc" id="L29">        return ymlMapper.readValue(content, new TypeReference&lt;&gt;() {</span>
+        });
     }
 }
+
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

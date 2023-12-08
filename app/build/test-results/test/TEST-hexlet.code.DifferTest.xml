@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="hexlet.code.DifferTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2023-07-21T15:11:54" hostname="Air-Artem" time="0.841">
+<testsuite name="hexlet.code.DifferTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2023-12-08T16:12:24" hostname="MacBook-Air-Artem.local" time="0.835">
   <properties/>
-  <testcase name="jsonTest()" classname="hexlet.code.DifferTest" time="0.841"/>
+  <testcase name="jsonTest()" classname="hexlet.code.DifferTest" time="0.679"/>
+  <testcase name="jsonTest2()" classname="hexlet.code.DifferTest" time="0.011"/>
+  <testcase name="ymlTest()" classname="hexlet.code.DifferTest" time="0.105"/>
+  <testcase name="ymlTest2()" classname="hexlet.code.DifferTest" time="0.034"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>
