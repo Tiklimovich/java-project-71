@@ -72,6 +72,14 @@ public class DifferTest {
         String result = Differ.generate(ymlFile3, ymlFile4, "plain");
         assertThat(result).isEqualTo(plainResult);
     }
+    @Test void jsonTestDefault() throws Exception {
+        String result = Differ.generate(jsonFile3, jsonFile4, defaultFormat);
+        assertThat(result).isEqualTo(jsonResult2);
+    }
+    @Test void ymlTestDefault() throws Exception {
+        String result = Differ.generate(ymlFile3, ymlFile4, defaultFormat);
+        assertThat(result).isEqualTo(ymlResult2);
+    }
 }
 
 
