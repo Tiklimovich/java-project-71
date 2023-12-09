@@ -9,11 +9,11 @@ import java.util.Map;
 
 <span class="nc" id="L10">public class Format {</span>
     public static String formatStyle(List&lt;Map&lt;String, Object&gt;&gt; difference, String format) throws IOException {
-<span class="pc bpc" id="L12" title="2 of 3 branches missed.">        switch (format) {</span>
+<span class="pc bpc" id="L12" title="1 of 3 branches missed.">        switch (format) {</span>
             case &quot;stylish&quot;:
 <span class="fc" id="L14">                return Stylish.formatStylish(difference);</span>
             case &quot;plain&quot;:
-<span class="nc" id="L16">                return Plain.formatPlain(difference);</span>
+<span class="fc" id="L16">                return Plain.formatPlain(difference);</span>
             default:
 <span class="nc" id="L18">                throw new Error(&quot;Unknown format: &quot; + format);</span>
 

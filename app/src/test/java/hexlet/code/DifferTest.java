@@ -22,6 +22,7 @@ public class DifferTest {
     private static String ymlFile3;
     private static String ymlFile4;
     private static String ymlResult2;
+    private static String plainResult;
 
     @BeforeAll
     public static void beforeAll() throws Exception {
@@ -38,6 +39,7 @@ public class DifferTest {
         ymlFile3 = "src/test/resources/file3.yml";
         ymlFile4 = "src/test/resources/file4.yml";
         ymlResult2 = Files.readString(Paths.get("src/test/resources/ymlResult2"));
+        plainResult = Files.readString(Paths.get("./src/test/resources/plainResult"));
 
     }
     @Test
@@ -59,6 +61,16 @@ public class DifferTest {
     public void ymlTest2() throws Exception {
         String result = Differ.generate(ymlFile3, ymlFile4, "stylish");
         assertThat(result).isEqualTo(ymlResult2);
+    }
+    @Test
+    public void jsonTestPlain() throws Exception {
+        String result = Differ.generate(jsonFile3, jsonFile4, "plain");
+        assertThat(result).isEqualTo(plainResult);
+    }
+    @Test
+    public void ymlTestPlain() throws Exception {
+        String result = Differ.generate(ymlFile3, ymlFile4, "plain");
+        assertThat(result).isEqualTo(plainResult);
     }
 }
 

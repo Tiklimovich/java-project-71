@@ -9,24 +9,22 @@ import com.fasterxml.jackson.dataformat.yaml.YAMLMapper;
 import java.io.IOException;
 import java.util.Map;
 
-import java.util.Collections;
-
-<span class="nc" id="L14">public class Parser {</span>
+<span class="nc" id="L12">public class Parser {</span>
     public static Map&lt;String, Object&gt; parser(String content, String dataFormat) throws Exception {
-<span class="pc bpc" id="L16" title="1 of 3 branches missed.">        return switch (dataFormat) {</span>
-<span class="fc" id="L17">            case &quot;json&quot; -&gt; getDataJson(content);</span>
-<span class="fc" id="L18">            case &quot;yml&quot;, &quot;yaml&quot; -&gt; getDataYaml(content);</span>
-<span class="nc" id="L19">            default -&gt; throw new IOException(&quot;Unknown file extension! -&gt; &quot; + dataFormat);</span>
+<span class="pc bpc" id="L14" title="1 of 3 branches missed.">        return switch (dataFormat) {</span>
+<span class="fc" id="L15">            case &quot;json&quot; -&gt; getDataJson(content);</span>
+<span class="fc" id="L16">            case &quot;yml&quot;, &quot;yaml&quot; -&gt; getDataYaml(content);</span>
+<span class="nc" id="L17">            default -&gt; throw new IOException(&quot;Unknown file extension! -&gt; &quot; + dataFormat);</span>
         };
     }
     private static Map&lt;String, Object&gt; getDataJson(String content) throws IOException {
-<span class="fc" id="L23">        ObjectMapper jsonMapper = new JsonMapper();</span>
-<span class="fc" id="L24">        return jsonMapper.readValue(content, new TypeReference&lt;&gt;() {</span>
+<span class="fc" id="L21">        ObjectMapper jsonMapper = new JsonMapper();</span>
+<span class="fc" id="L22">        return jsonMapper.readValue(content, new TypeReference&lt;&gt;() {</span>
         });
     }
     private static Map&lt;String, Object&gt; getDataYaml(String content) throws IOException {
-<span class="fc" id="L28">        ObjectMapper ymlMapper = new YAMLMapper();</span>
-<span class="fc" id="L29">        return ymlMapper.readValue(content, new TypeReference&lt;&gt;() {</span>
+<span class="fc" id="L26">        ObjectMapper ymlMapper = new YAMLMapper();</span>
+<span class="fc" id="L27">        return ymlMapper.readValue(content, new TypeReference&lt;&gt;() {</span>
         });
     }
 }
