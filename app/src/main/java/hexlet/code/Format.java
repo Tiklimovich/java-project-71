@@ -1,5 +1,6 @@
 package hexlet.code;
 
+import hexlet.code.Formatter.Json;
 import hexlet.code.Formatter.Stylish;
 import hexlet.code.Formatter.Plain;
 
@@ -14,6 +15,8 @@ public class Format {
                 return Stylish.formatStylish(difference);
             case "plain":
                 return Plain.formatPlain(difference);
+            case "json":
+                return Json.formatJson(difference);
             default:
                 throw new Error("Unknown format: " + format);
 
