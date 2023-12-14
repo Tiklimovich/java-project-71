@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="hexlet.code.DifferTest" tests="10" skipped="0" failures="0" errors="0" timestamp="2023-12-14T16:09:26" hostname="MacBook-Air-Artem.local" time="0.994">
+<testsuite name="hexlet.code.DifferTest" tests="10" skipped="0" failures="0" errors="0" timestamp="2023-12-14T16:54:31" hostname="MacBook-Air-Artem.local" time="0.923">
   <properties/>
-  <testcase name="jsonTest()" classname="hexlet.code.DifferTest" time="0.559"/>
-  <testcase name="ymlTestJson()" classname="hexlet.code.DifferTest" time="0.173"/>
-  <testcase name="jsonTest2()" classname="hexlet.code.DifferTest" time="0.006"/>
-  <testcase name="ymlTest()" classname="hexlet.code.DifferTest" time="0.014"/>
-  <testcase name="jsonTestPlain()" classname="hexlet.code.DifferTest" time="0.07"/>
-  <testcase name="jsonTestDefault()" classname="hexlet.code.DifferTest" time="0.023"/>
-  <testcase name="ymlTestDefault()" classname="hexlet.code.DifferTest" time="0.042"/>
-  <testcase name="ymlTestPlain()" classname="hexlet.code.DifferTest" time="0.033"/>
-  <testcase name="ymlTest2()" classname="hexlet.code.DifferTest" time="0.027"/>
+  <testcase name="jsonTest()" classname="hexlet.code.DifferTest" time="0.608"/>
+  <testcase name="ymlTestJson()" classname="hexlet.code.DifferTest" time="0.166"/>
+  <testcase name="jsonTest2()" classname="hexlet.code.DifferTest" time="0.005"/>
+  <testcase name="ymlTest()" classname="hexlet.code.DifferTest" time="0.01"/>
+  <testcase name="jsonTestPlain()" classname="hexlet.code.DifferTest" time="0.026"/>
+  <testcase name="jsonTestDefault()" classname="hexlet.code.DifferTest" time="0.004"/>
+  <testcase name="ymlTestDefault()" classname="hexlet.code.DifferTest" time="0.026"/>
+  <testcase name="ymlTestPlain()" classname="hexlet.code.DifferTest" time="0.026"/>
+  <testcase name="ymlTest2()" classname="hexlet.code.DifferTest" time="0.016"/>
   <testcase name="jsonTestJson()" classname="hexlet.code.DifferTest" time="0.008"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
