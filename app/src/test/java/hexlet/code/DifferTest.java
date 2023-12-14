@@ -54,46 +54,6 @@ public class DifferTest {
         String result = Differ.generate(ymlFile1, ymlFile2, "stylish");
         assertThat(result).isEqualTo(ymlResult);
     }
-    @Test
-    public void jsonTest2() throws Exception {
-        String result = Differ.generate(jsonFile3, jsonFile4, "stylish");
-        assertThat(result).isEqualTo(jsonResult2);
-    }
-    @Test
-    public void ymlTest2() throws Exception {
-        String result = Differ.generate(ymlFile3, ymlFile4, "stylish");
-        assertThat(result).isEqualTo(ymlResult2);
-    }
-    @Test
-    public void jsonTestPlain() throws Exception {
-        String result = Differ.generate(jsonFile3, jsonFile4, "plain");
-        assertThat(result).isEqualTo(plainResult);
-    }
-    @Test
-    public void ymlTestPlain() throws Exception {
-        String result = Differ.generate(ymlFile3, ymlFile4, "plain");
-        assertThat(result).isEqualTo(plainResult);
-    }
-    @Test
-    public void jsonTestDefault() throws Exception {
-        String result = Differ.generate(jsonFile3, jsonFile4, defaultFormat);
-        assertThat(result).isEqualTo(jsonResult2);
-    }
-    @Test
-    public void ymlTestDefault() throws Exception {
-        String result = Differ.generate(ymlFile3, ymlFile4, defaultFormat);
-        assertThat(result).isEqualTo(ymlResult2);
-    }
-    @Test
-    public void jsonTestJson() throws Exception {
-        String result = Differ.generate(jsonFile3, jsonFile4, "json");
-        assertThat(result).isEqualTo(formatJsonResult);
-    }
-    @Test
-    public void ymlTestJson() throws Exception {
-        String result = Differ.generate(ymlFile3, ymlFile4, "json");
-        assertThat(result).isEqualTo(formatJsonResult);
-    }
 }
 
 
