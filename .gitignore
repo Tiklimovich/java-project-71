@@ -24,3 +24,5 @@ doc
 .tool-versions
 .idea/
 app/assets/builds/
+.gradle
+build/
