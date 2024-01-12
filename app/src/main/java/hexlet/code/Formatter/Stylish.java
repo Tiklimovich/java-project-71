@@ -10,16 +10,16 @@ public class Stylish {
         for (Map<String, Object> differences : difference) {
             switch (differences.get("status").toString()) {
                 case "removed" -> result.append("  - ").append(differences.get("key")).append(": ")
-                        .append(differences.get("oldValue")).append("\n");
+                        .append(differences.get("value")).append("\n");
                 case "added" -> result.append("  + ").append(differences.get("key")).append(": ")
-                        .append(differences.get("newValue")).append("\n");
+                        .append(differences.get("value")).append("\n");
                 case "unchanged" -> result.append("    ").append(differences.get("key")).append(": ")
-                        .append(differences.get("oldValue")).append("\n");
+                        .append(differences.get("value")).append("\n");
                 default -> {
                     result.append("  - ").append(differences.get("key")).append(": ")
-                            .append(differences.get("oldValue")).append("\n");
+                            .append(differences.get("value1")).append("\n");
                     result.append("  + ").append(differences.get("key")).append(": ")
-                            .append(differences.get("newValue")).append("\n");
+                            .append(differences.get("value2")).append("\n");
                 }
             }
         }

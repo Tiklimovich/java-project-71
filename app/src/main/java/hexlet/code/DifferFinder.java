@@ -19,23 +19,23 @@ public class DifferFinder {
 
         for (String key:keysFromFile) {
             Map<String, Object> map = new LinkedHashMap<>();
-            if (data1.containsKey(key) && !data2.containsKey(key)) {
+            if (!data2.containsKey(key)) {
                 map.put("key", key);
-                map.put("oldValue", data1.get(key));
+                map.put("value", data1.get(key));
                 map.put("status", "removed");
-            } else if (!data1.containsKey(key) && data2.containsKey(key)) {
+            } else if (!data1.containsKey(key)) {
                 map.put("key", key);
-                map.put("newValue", data2.get(key));
+                map.put("value", data2.get(key));
                 map.put("status", "added");
             } else if (!Objects.equals(data1.get(key), data2.get(key))) {
                 map.put("key", key);
-                map.put("oldValue", data1.get(key));
-                map.put("newValue", data2.get(key));
+                map.put("value1", data1.get(key));
+                map.put("value2", data2.get(key));
                 map.put("status", "updated");
 
             } else {
                 map.put("key", key);
-                map.put("oldValue", data1.get(key));
+                map.put("value", data1.get(key));
                 map.put("status", "unchanged");
             }
             result.add(map);

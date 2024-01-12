@@ -13,13 +13,13 @@ public class Plain {
                         .append(differences.get("key")).append("'").append(" was removed").append("\n");
                 case "added" -> result.append("Property ").append(complexValue(differences.get("key")))
                         .append(" was added with value: ")
-                        .append(complexValue(differences.get("newValue")))
+                        .append(complexValue(differences.get("value")))
                         .append("\n");
                 case "updated" ->
                         result.append("Property ").append(complexValue(differences.get("key")))
                                 .append(" was updated. From ")
-                                .append(complexValue(differences.get("oldValue"))).append(" to ")
-                                .append(complexValue(differences.get("newValue")))
+                                .append(complexValue(differences.get("value1"))).append(" to ")
+                                .append(complexValue(differences.get("value2")))
                                 .append("\n");
 
                 default -> result.append("");

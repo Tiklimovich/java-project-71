@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="hexlet.code.DifferTest" tests="8" skipped="0" failures="0" errors="0" timestamp="2024-01-12T16:04:37" hostname="Air-Artem" time="1.096">
+  <properties/>
+  <testcase name="ymlTestJson()" classname="hexlet.code.DifferTest" time="0.899"/>
+  <testcase name="jsonTest2()" classname="hexlet.code.DifferTest" time="0.034"/>
+  <testcase name="jsonTestPlain()" classname="hexlet.code.DifferTest" time="0.029"/>
+  <testcase name="jsonTestDefault()" classname="hexlet.code.DifferTest" time="0.015"/>
+  <testcase name="ymlTestDefault()" classname="hexlet.code.DifferTest" time="0.024"/>
+  <testcase name="ymlTestPlain()" classname="hexlet.code.DifferTest" time="0.028"/>
+  <testcase name="ymlTest2()" classname="hexlet.code.DifferTest" time="0.025"/>
+  <testcase name="jsonTestJson()" classname="hexlet.code.DifferTest" time="0.014"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

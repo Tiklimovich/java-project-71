@@ -8,6 +8,6 @@ import java.util.List;
 public class Json {
     public static String formatJson(List<Map<String, Object>> difference) throws JsonProcessingException {
         ObjectMapper objectMapper = new ObjectMapper();
-        return objectMapper.writeValueAsString(difference).trim();
+        return objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(difference).trim();
     }
 }
