@@ -2,73 +2,75 @@ package hexlet.code;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import org.assertj.core.api.Assertions;
-
+import org.skyscreamer.jsonassert.JSONAssert;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.nio.file.Path;
+import java.io.IOException;
 
 public class DifferTest {
-    private static String jsonFile1;
-    private static String jsonFile2;
+    private static final String FILE1JSON = getFilePath("file1.json").toString();
+    private static final String FILE2JSON = getFilePath("file2.json").toString();
+    private static final String FILE1YML = getFilePath("file1.yml").toString();
+    private static final String FILE2YML = getFilePath("file2.yml").toString();
     private static String stylishResult;
-    private static String ymlFile1;
-    private static String ymlFile2;
     private static String plainResult;
     private static String jsonResult;
-
+    private static Path getFilePath(String fileName) {
+        return Paths.get("src", "test", "resources", fileName)
+                .toAbsolutePath().normalize();
+    }
+    private static String getResult(String fileName) throws IOException {
+        return Files.readString(getFilePath(fileName));
+    }
     @BeforeAll
     public static void beforeAll() throws Exception {
-        jsonFile1 = "src/test/resources/file1.json";
-        jsonFile2 = "src/test/resources/file2.json";
-        stylishResult = Files.readString(Paths.get("src/test/resources/stylishResult"));
-        ymlFile1 = "src/test/resources/file1.yml";
-        ymlFile2 = "src/test/resources/file2.yml";
-        plainResult = Files.readString(Paths.get("./src/test/resources/plainResult"));
-        jsonResult = Files.readString(Paths.get("./src/test/resources/jsonResult.json"));
-
+        stylishResult = getResult("stylishResult");
+        plainResult = getResult("plainResult");
+        jsonResult = getResult("jsonResult.json");
     }
     @Test
     public void jsonTest2() throws Exception {
-        String result = Differ.generate(jsonFile1, jsonFile2, "stylish");
+        String result = Differ.generate(FILE1JSON, FILE2JSON, "stylish");
         assertThat(result).isEqualTo(stylishResult);
     }
     @Test
     public void ymlTest2() throws Exception {
-        String result = Differ.generate(ymlFile1, ymlFile2, "stylish");
+        String result = Differ.generate(FILE1YML, FILE2YML, "stylish");
         assertThat(result).isEqualTo(stylishResult);
     }
     @Test
     public void jsonTestPlain() throws Exception {
-        String result = Differ.generate(jsonFile1, jsonFile2, "plain");
+        String result = Differ.generate(FILE1JSON, FILE2JSON, "plain");
         assertThat(result).isEqualTo(plainResult);
     }
     @Test
     public void ymlTestPlain() throws Exception {
-        String result = Differ.generate(ymlFile1, ymlFile2, "plain");
+        String result = Differ.generate(FILE1YML, FILE2YML, "plain");
         assertThat(result).isEqualTo(plainResult);
     }
     @Test
     public void jsonTestDefault() throws Exception {
-        String result = Differ.generate(jsonFile1, jsonFile2);
+        String result = Differ.generate(FILE1JSON, FILE2JSON);
         assertThat(result).isEqualTo(stylishResult);
     }
     @Test
     public void ymlTestDefault() throws Exception {
-        String result = Differ.generate(ymlFile1, ymlFile2);
+        String result = Differ.generate(FILE1YML, FILE2YML);
         assertThat(result).isEqualTo(stylishResult);
     }
     @Test
     public void jsonTestJson() throws Exception {
-        String result = Differ.generate(jsonFile1, jsonFile2, "json");
-        Assertions.assertThat(result).isEqualTo((jsonResult));
+        String result = Differ.generate(FILE1JSON, FILE2JSON, "json");
+        JSONAssert.assertEquals(jsonResult, result, false);
     }
     @Test
     public void ymlTestJson() throws Exception {
-        String result = Differ.generate(ymlFile1, ymlFile2, "json");
-        Assertions.assertThat(result).isEqualTo(jsonResult);
+        String result = Differ.generate(FILE1YML, FILE2YML, "json");
+        JSONAssert.assertEquals(jsonResult, result, false);
     }
 }
 
