@@ -1,7 +1,7 @@
 package hexlet.code.Formatter;
 
-import java.util.Map;
 import java.util.List;
+import java.util.Map;
 
 public class Plain {
     public static String formatPlain(List<Map<String, Object>> difference) {
@@ -15,12 +15,11 @@ public class Plain {
                         .append(" was added with value: ")
                         .append(complexValue(differences.get("value")))
                         .append("\n");
-                case "updated" ->
-                        result.append("Property ").append(complexValue(differences.get("key")))
-                                .append(" was updated. From ")
-                                .append(complexValue(differences.get("value1"))).append(" to ")
-                                .append(complexValue(differences.get("value2")))
-                                .append("\n");
+                case "updated" -> result.append("Property ").append(complexValue(differences.get("key")))
+                        .append(" was updated. From ")
+                        .append(complexValue(differences.get("value1"))).append(" to ")
+                        .append(complexValue(differences.get("value2")))
+                        .append("\n");
 
                 default -> result.append("");
             }

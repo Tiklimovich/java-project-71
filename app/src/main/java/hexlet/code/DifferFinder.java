@@ -17,7 +17,7 @@ public class DifferFinder {
         Set<String> keysFromFile = new TreeSet<String>(data1.keySet());
         keysFromFile.addAll(data2.keySet());
 
-        for (String key:keysFromFile) {
+        for (String key : keysFromFile) {
             Map<String, Object> map = new LinkedHashMap<>();
             if (!data2.containsKey(key)) {
                 map.put("key", key);

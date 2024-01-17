@@ -2,7 +2,6 @@ package hexlet.code;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-
 import com.fasterxml.jackson.databind.json.JsonMapper;
 import com.fasterxml.jackson.dataformat.yaml.YAMLMapper;
 
@@ -17,11 +16,13 @@ public class Parser {
             default -> throw new IOException("Unknown file extension! -> " + dataFormat);
         };
     }
+
     private static Map<String, Object> getDataJson(String content) throws IOException {
         ObjectMapper jsonMapper = new JsonMapper();
         return jsonMapper.readValue(content, new TypeReference<>() {
         });
     }
+
     private static Map<String, Object> getDataYaml(String content) throws IOException {
         ObjectMapper ymlMapper = new YAMLMapper();
         return ymlMapper.readValue(content, new TypeReference<>() {

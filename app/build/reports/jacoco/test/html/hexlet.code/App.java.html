@@ -4,12 +4,13 @@ import picocli.CommandLine;
 import picocli.CommandLine.Command;
 import picocli.CommandLine.Option;
 import picocli.CommandLine.Parameters;
+
 import java.util.concurrent.Callable;
 
 
 @Command(name = &quot;gendiff&quot;, mixinStandardHelpOptions = true, version = &quot;gendiff 1.0&quot;,
         description = &quot;Compares two configuration files and shows a difference.&quot;)
-<span class="nc" id="L12">public final class App implements Callable&lt;Integer&gt; {</span>
+<span class="nc" id="L13">public final class App implements Callable&lt;Integer&gt; {</span>
     private static final int SUCCESS_EXIT_CODE = 0;
     private static final int ERROR_EXIT_CODE = 1;
 
@@ -25,19 +26,20 @@ import java.util.concurrent.Callable;
     private String format;
 
     public static void main(String[] args) {
-<span class="nc" id="L28">        int exitCode = new CommandLine(new App()).execute(args);</span>
-<span class="nc" id="L29">        System.exit(exitCode);</span>
-<span class="nc" id="L30">    }</span>
+<span class="nc" id="L29">        int exitCode = new CommandLine(new App()).execute(args);</span>
+<span class="nc" id="L30">        System.exit(exitCode);</span>
+<span class="nc" id="L31">    }</span>
+
     @Override
     public Integer call() throws Exception {
         try {
-<span class="nc" id="L34">            String formattedDiff = Differ.generate(filePath1, filePath2, format);</span>
-<span class="nc" id="L35">            System.out.println(formattedDiff);</span>
-<span class="nc" id="L36">        } catch (Exception e) {</span>
-<span class="nc" id="L37">            System.err.println(e.getMessage());</span>
-<span class="nc" id="L38">            return ERROR_EXIT_CODE;</span>
-<span class="nc" id="L39">        }</span>
-<span class="nc" id="L40">        return SUCCESS_EXIT_CODE;</span>
+<span class="nc" id="L36">            String formattedDiff = Differ.generate(filePath1, filePath2, format);</span>
+<span class="nc" id="L37">            System.out.println(formattedDiff);</span>
+<span class="nc" id="L38">        } catch (Exception e) {</span>
+<span class="nc" id="L39">            System.err.println(e.getMessage());</span>
+<span class="nc" id="L40">            return ERROR_EXIT_CODE;</span>
+<span class="nc" id="L41">        }</span>
+<span class="nc" id="L42">        return SUCCESS_EXIT_CODE;</span>
     }
 }
 

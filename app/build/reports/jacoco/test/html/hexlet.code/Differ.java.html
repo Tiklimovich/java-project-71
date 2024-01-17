@@ -3,32 +3,36 @@
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Map;
 import java.util.List;
+import java.util.Map;
 
 <span class="nc" id="L9">public class Differ {</span>
-    public static Path getAbsolutePath(String filePath) {
-<span class="fc" id="L11">        return Paths.get(filePath).toAbsolutePath().normalize();</span>
-    }
-    public static String getData(String filePath) throws Exception {
-<span class="fc" id="L14">        return Files.readString(getAbsolutePath(filePath));</span>
-    }
-    public static String getExtension(String filePath) {
-<span class="fc" id="L17">        return filePath.substring(filePath.lastIndexOf(&quot;.&quot;) + 1);</span>
-    }
     public static String generate(String filePath1, String filePath2, String format) throws Exception {
-<span class="fc" id="L20">        String dataContent1 = getData(filePath1);</span>
-<span class="fc" id="L21">        String dataContent2 = getData(filePath2);</span>
+<span class="fc" id="L11">        String dataContent1 = getData(filePath1);</span>
+<span class="fc" id="L12">        String dataContent2 = getData(filePath2);</span>
 
-<span class="fc" id="L23">        Map&lt;String, Object&gt; map1 = Parser.parser(dataContent1, getExtension(filePath1));</span>
-<span class="fc" id="L24">        Map&lt;String, Object&gt; map2 = Parser.parser(dataContent2, getExtension(filePath2));</span>
+<span class="fc" id="L14">        Map&lt;String, Object&gt; map1 = Parser.parser(dataContent1, getExtension(filePath1));</span>
+<span class="fc" id="L15">        Map&lt;String, Object&gt; map2 = Parser.parser(dataContent2, getExtension(filePath2));</span>
 
-<span class="fc" id="L26">        List&lt;Map&lt;String, Object&gt;&gt; result = DifferFinder.differFinder(map1, map2, format);</span>
+<span class="fc" id="L17">        List&lt;Map&lt;String, Object&gt;&gt; result = DifferFinder.differFinder(map1, map2, format);</span>
 
-<span class="fc" id="L28">        return Format.formatStyle(result, format).toString().trim();</span>
+<span class="fc" id="L19">        return Format.formatStyle(result, format).trim();</span>
     }
+
     public static String generate(String filePath1, String filePath2) throws Exception {
-<span class="fc" id="L31">        return generate(filePath1, filePath2, &quot;stylish&quot;);</span>
+<span class="fc" id="L23">        return generate(filePath1, filePath2, &quot;stylish&quot;);</span>
+    }
+
+    private static Path getAbsolutePath(String filePath) {
+<span class="fc" id="L27">        return Paths.get(filePath).toAbsolutePath().normalize();</span>
+    }
+
+    private static String getData(String filePath) throws Exception {
+<span class="fc" id="L31">        return Files.readString(getAbsolutePath(filePath));</span>
+    }
+
+    private static String getExtension(String filePath) {
+<span class="fc" id="L35">        return filePath.substring(filePath.lastIndexOf(&quot;.&quot;) + 1);</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.9.202303310957</span></div></body></html>
